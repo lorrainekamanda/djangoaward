@@ -8,7 +8,17 @@ from django_countries.fields import CountryField
 
 
         
+class Profile(models.Model):
 
+    profile_image = models.ImageField(default = 'profile.jpg',upload_to = 'images/')
+    bio = models.TextField(max_length =160,null = True)
+    phone_number = models.IntegerField(null = True)
+    user = models.OneToOneField(User,on_delete = models.CASCADE,null = True)
+    
+   
+
+    def __str__(self):
+        return self.user.username
 
 class Image(models.Model):
 
