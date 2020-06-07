@@ -16,7 +16,12 @@ router.register('profie-details', views.ImageList)
 
 
 urlpatterns = [ 
-    
+    path('api/merch/merch-id/(?P<pk>[0-9]+)/',views.MerchDescription.as_view()),
+    path('apis/', views.ProfileApi.as_view()),
+    path('image/<int:imageid>/preference/<int:userpreference>', views.imagepreference, name='imagepreference'),
+    path('', ImageView.as_view(), name = 'blog-home'),
+    path('api-token-auth/', obtain_auth_token),
+    path('api/',include(router.urls)),
     path('image/<int:pk>/', ImageDetail.as_view(), name = 'image-detail'),
     path('image/<int:pk>/comment', CreateComment.as_view(), name = 'comment-detail'),
     path('image/<int:pk>/update', UpdateDetail.as_view(), name = 'image-update'),
