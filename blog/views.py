@@ -218,3 +218,32 @@ def imagepreference(request, imageid, userpreference):
                 return redirect('image-detail')
 
 
+class ProfileList(viewsets.ModelViewSet):
+   
+
+        queryset = Profile.objects.all()
+        serializer_class = ProfileSerializer
+
+class ImageList(viewsets.ModelViewSet):
+   
+
+        queryset = Image.objects.all()
+        serializer_class = ImageSerializer
+
+
+
+
+
+class ProfileApi(APIView):
+    def get(self, request, format=None):
+        all_merch = Profile.objects.all()
+        serializers = ProfileSerializer(all_merch, many=True)
+        return Response(serializers.data)
+        def post(self, request, format=None):
+         serializers = ProfileSerializer(data=request.data)
+         if serializers.is_valid():
+            serializers.save()
+            permission_classes = (IsAdminOrReadOnly,)
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
