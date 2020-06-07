@@ -95,3 +95,31 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'searches/search.html',{"message":message})
 
+@login_required
+def profile(request):
+    if request.method == 'POST':
+
+       user_form = UpdateUser(request.POST,instance=request.user)
+       profile_form = UpdateProfile(request.POST,request.FILES,instance = request.user.profile)
+       
+       if user_form.is_valid() and profile_form.is_valid():
+           user_form.save()
+           profile_form.save()
+           
+           messages.success(request,f'Account updated')
+           return redirect('blog-profile')
+    else:
+       user_form = UpdateUser(instance=request.user)
+       profile_form = UpdateProfile(instance = request.user.profile)
+       
+    context = {
+        'user_form':user_form,
+        'profile_form': profile_form,
+        
+        
+        
+       }
+    return render(request,'blog/profile.html',context )
+
+
+
