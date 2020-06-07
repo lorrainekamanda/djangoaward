@@ -1,0 +1,11 @@
+
+#rowa{
+  background-image: url(../blog/images/image1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+.overlay22{
+  background-color: rgba(23, 25, 34, 0.589);
+  height: 100%;
+}

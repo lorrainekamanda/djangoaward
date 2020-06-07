@@ -1,0 +1,149 @@
+/*--- Neeeded, to make work dropdown  */
+.navbar-item.has-dropdown .navbar-dropdown {
+    display: none; }
+  
+  .navbar-item.has-dropdown.is-active .navbar-dropdown {
+    display: block; }
+  
+  .transparent {
+    background-color: transparent !important; }
+  
+   * {
+    box-shadow: none !important; } 
+  
+  
+  
+  .transparent {
+    background: transparent !important; }
+  
+  .material_shadow_five {
+      
+       transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22) !important;
+  
+  }
+  
+  aside {
+      position: fixed;
+      height: 80% ;
+  }
+  
+  .input {
+      border: none !important;
+  }
+  
+  /*Stop button*/
+  .size-med #songStop {
+      background-color: brown;
+      
+      width: 12px;
+      height: 12px;
+      cursor: pointer;
+      float: left;
+      border: none;
+      margin: 2px 20px 0;
+  }
+  
+  /*Play/Pause button*/
+  .size-med #songPlayPause {
+      color: #333333;
+      background-color: transparent;
+      font-size: 16px;
+      cursor: pointer;
+      float: left;
+      width: 20px;
+      text-align: center;
+          border: none;
+  
+  }
+  
+  .size-med #songPlayPause.playing {
+      font-weight: bold;
+      height: 14px;
+      overflow: hidden;
+  }
+  
+  /*Audio Player*/
+  .size-med #audioplayer.input {
+      border: none; 
+  }
+  
+  /*Song location slider*/
+  .size-med #songSlider {
+      width: 500px;
+      height: 20px;
+      
+      border-radius: 30px; 
+      background: #c0300c;
+      background: -moz-linear-gradient(top, #222222 0%, #000000 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #222222), color-stop(100%, #000000));
+      background: -webkit-linear-gradient(top, #222222 0%, #000000 100%);
+      background: -o-linear-gradient(top, #222222 0%, #000000 100%);
+      background: -ms-linear-gradient(top, #222222 0%, #000000 100%);
+      background: linear-gradient(to bottom, #222222 0%, #000000 100%);
+      position: relative;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /*Track progress bar*/
+  .size-med #trackProgress {
+      width: 0;
+      height: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 1px 0 2px #666;
+      border-radius: 28px;
+        background: #da22ff;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(45deg, #D70652, #FF025E);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(45deg, #D70652, #FF025E);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  
+  }
+  
+  .size-med #songTimeA {
+      margin-top: 3px;
+      position: absolute;
+      left: 6px;
+      font-size: 10px;
+      color: #FFF;
+      pointer-events: none;
+      cursor: default;
+  }
+  
+  .size-med #songTimeB {
+      margin-top: 3px;
+      position: absolute;
+      right: 6px;
+      font-size: 10px;
+      color: #FFF;
+      pointer-events: none;
+      cursor: default;
+  }
+  
+  .size-med #songTimeC {
+          margin-top: 3px;
+  
+      position: absolute;
+      left: 6px;
+      font-size: 10px;
+      color:transparent;
+      pointer-events: none;
+      cursor: default;
+  }
+  
+  .size-med #songTimeD {
+          margin-top: 3px;
+  
+      position: absolute;
+      text-align: right;
+      right: 6PX;
+      width: 40px;
+      font-size: 10px;
+      color: #111;
+      pointer-events: none;
+      cursor: default;
+  }
+  
