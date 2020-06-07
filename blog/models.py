@@ -70,7 +70,19 @@ class Image(models.Model):
     def __str__(self):
         return self.username.username
 
+class Comments(models.Model):
+    comments = models.TextField(max_length =1160,null = True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null = True)
+    likes = models.IntegerField(default=0)
+    username= models.ForeignKey(User,on_delete=models.CASCADE,null = True)
+    image = models.ForeignKey(Image,on_delete=models.CASCADE,null = True)
+    date_posted = models.DateTimeField(default=timezone.now)
+    
+    def get_absolute_url(self):
+        return reverse ('blog-home')
 
+    def __str__(self):
+        return self.username.username
 
 
 class Preference(models.Model):
