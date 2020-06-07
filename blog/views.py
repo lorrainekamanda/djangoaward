@@ -123,3 +123,23 @@ def profile(request):
 
 
 
+class ImageDetail(DetailView):
+    model = Image
+    template_name = 'blog/image-detail.html'
+    context_object_name = 'image'
+    
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        comments_connected = Comments.objects.filter(image=self.get_object())
+        data['comments'] = comments_connected
+        data['form'] = CommentForm(instance=self.request.user)
+        return data
+
+    def post(self, request, *args, **kwargs):
+        new_comment = Comments(comments=request.POST.get('comments'),
+                              username=self.request.user,
+                              image=self.get_object())
+        new_comment.save()
+
+        return self.get(self, request, *args, **kwargs)
+
