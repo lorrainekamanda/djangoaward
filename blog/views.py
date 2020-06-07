@@ -83,3 +83,15 @@ def register(request):
     return render (request,'blog/register.html',{'form':form})
 
 
+def search_results(request):
+    if 'username' in request.GET and request.GET["username"]:
+        search_term = request.GET.get("username")
+        searched_users = Image.search_by_username(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'blog/search.html',{"message":message,"users": searched_users})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'searches/search.html',{"message":message})
+
