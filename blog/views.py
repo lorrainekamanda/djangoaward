@@ -152,3 +152,69 @@ class ImageDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         return is_users(self.get_object().username, self.request.user)
 
+@login_required
+def imagepreference(request, imageid, userpreference):
+
+        if request.method == "POST":
+                eachpost= get_object_or_404(Image, id=imageid)
+                obj=''
+                valueobj=''
+                try:
+                        obj= Preference.objects.get(user= request.user, image= eachpost)
+                        valueobj= obj.value 
+                        valueobj= int(valueobj)
+                        userpreference= int(userpreference)
+                        if valueobj != userpreference:
+                                obj.delete()
+                                upref= Preference()
+                                upref.user= request.user
+                                upref.image= eachpost
+                                upref.value= userpreference
+                                if userpreference == 1 and valueobj != 1:
+                                        eachpost.likes += 1
+                                        eachpost.dislikes -=1
+                                elif userpreference == 2 and valueobj != 2:
+                                        eachpost.dislikes += 1
+                                        eachpost.likes -= 1
+                                upref.save()
+                                eachpost.save()
+                                context= {'eachpost': eachpost,
+                                  'imageid': imageid}
+                                return redirect('image-detail')
+                        elif valueobj == userpreference:
+                                obj.delete()
+                                if userpreference == 1:
+                                        eachpost.likes -= 1
+                                elif userpreference == 2:
+                                        eachpost.dislikes -= 1
+                                eachpost.save()
+                                context= {'eachpost': eachpost,
+                                  'imageid': imageid}
+                                return redirect('image-detail')
+                                
+                except Preference.DoesNotExist:
+                        upref= Preference()
+                        upref.user= request.user
+                        upref.post= eachpost
+                        upref.value= userpreference
+                        userpreference= int(userpreference)
+                        if userpreference == 1:
+                                eachpost.likes += 1
+                        elif userpreference == 2:
+                                eachpost.dislikes +=1
+                        upref.save()
+                        eachpost.save()                            
+
+                        context= {'post': eachpost,
+                          'imageid': imageid}
+
+                        return redirect('blog-home')
+
+        else:
+                eachpost= get_object_or_404(Image, id=imageid)
+                context= {'eachpost': eachpost,
+                          'imageid': imageid}
+
+                return redirect('image-detail')
+
+
