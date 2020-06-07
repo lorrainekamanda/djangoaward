@@ -143,3 +143,12 @@ class ImageDetail(DetailView):
 
         return self.get(self, request, *args, **kwargs)
 
+class ImageDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Image
+    template_name = 'blog/image-delete.html'
+    context_object_name = 'image'
+    success_url = '/'
+
+    def test_func(self):
+        return is_users(self.get_object().username, self.request.user)
+
