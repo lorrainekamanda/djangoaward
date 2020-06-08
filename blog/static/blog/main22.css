@@ -1,8 +1,4 @@
-body {
-    background: #fafafa;
-    color: #333333;
-    margin-top: 5rem;
-  }
+
   
   h1, h2, h3, h4, h5, h6 {
     color: #444444;
@@ -13,7 +9,7 @@ body {
   }
   
   .bg-steel {
-    background-color:salmon;
+    background-color:rgb(241, 245, 247);
   }
   
   .site-header .navbar-nav .nav-link {
@@ -83,5 +79,12 @@ body {
     font-size: 2.5rem;
   }
   #rowa{
-    background-image: url(../blog/images/back.jpg);
+    background-image: url(../blog/images/image1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
+
+.overlay22{
+  background-color: rgba(23, 25, 34, 0.589);
+  height: 100%;
+}

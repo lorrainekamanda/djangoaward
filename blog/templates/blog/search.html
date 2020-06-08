@@ -1,0 +1,92 @@
+{% extends 'blog/base.html'%} 
+  {% block content%}
+{%load static %}
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css"
+  integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
+<link rel="stylesheet" href="{%static 'blog/main22.css'%}">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
+{% for user in users%}
+<article class="media content-section" style="margin-top: 80px;">
+
+  
+    <div class="media" style="margin-right: 20px;" >
+    
+      <img src="{{user.username.profile.profile_image.url}}" srcset="" class="rounded-circle"
+        style="height: 100px; width: 100px;">
+
+      <p style="font-size: 15px;">{{user.username}} <span style="font-size: 10px; margin-right: 20px;"> {{user.username.email}}
+
+         
+        </span> <br> <span> {{user.username.profile.bio}} </span></p>
+    
+    </div><br><br>
+    <p>  {{user.comments}}   </p>
+     <p>  {{user.caption}}   </p> <br><br><br>
+     <div class="mdb-lightbox">
+
+
+
+      <div class="view overlay zoom">
+          <img src="{{user.image.url}}" alt="" srcset="" id="img1" style="height: 300px; width: 300px;">
+          <div class="mask flex-center rgba-red-light" style="height: 315px; width: 315px;">
+
+              <form id="likebutton" method="POST" action="#">
+                  {% csrf_token %}
+                  <input type="hidden">
+              </form>
+              <h1 id="word" style="color: white;" class="text-center"> <span
+                      style=" margin-bottom: 600px; margin-left: 250px;"> <a href="#"
+                          onClick="document.getElementById('likebutton').submit()" class="flex">
+                          <i style=" font-size: 16px;" class="far fa-heart"> {{image.likes}}</i>
+                      </a> </span> <br> <br> {{image.sitename|upper}} <br> <br> <span> <button
+                          class="btn btn-primary btn-sm" style="border-radius: 20px;"><a
+                              href="{{image.URL}}" style="color: white;"> Visit site </a> </button>
+                  </span></h1><br><br>
+
+
+
+          </div>
+      </div>
+
+
+      <div class="content-section" style="width: 300px;">
+          <p> <strong> {{user.sitename}} </strong> <br> <span> From {{user.countries.name}}</span> </p>
+          <div class="media">
+
+              {% if image.username%}
+              <img src="{{user.username.profile.profile_image.url}}" srcset="" class="rounded-circle"
+                  style="height: 50px; width: 50px;">
+
+              <p style="font-size: 10px;"> BY <strong> {{image.username|upper}} </strong> <span
+                      style="font-size: 10px;">
+                      {{user.username.email}}
+
+
+                      {%endif%}
+          </div><br><br>
+          <small>
+              {{ image.date_posted | date:"M d,Y " }}
+          </small>
+          <i style=" font-size: 16px;" class="far fa-comment"> <a
+                  href="#">
+                  {{ user.number_of_comments }} comments </a></i>
+
+
+          </article>
+      </div>
+  </div>
+
+   
+   
+   
+</article>
+{%endfor%}
+{%endblock%}
+

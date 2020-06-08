@@ -10,65 +10,69 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="{%static 'blog/main22.css'%}">
+  <link rel="stylesheet" href="{%static 'blog/main.css'%}">
   <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico' type='image/3x-icon' %}" class="rounded-circle"
     style="width: 100px;height: 100px;">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
   <title> Website Awards</title>
 </head>
-<div class="container">
-  <nav class="navbar navbar-expand-md navbar-light bg-steel fixed-top">
-   
 
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        {% if user.is_authenticated %}
-        <a class="navbar-brand" href="{%url 'blog-home'%}" style="color: white;">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog-logout' %}" style="color: white;"> Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog-profile' %}" style="color: white;"> Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'image-create' %}" style="color: white;"> Post</a>
-        </li>
-        {% else%}
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'blog-login' %}" style="color: white;">Login <span
-              class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog-register' %}" style="color: white;"> Register</a>
-        </li>
+<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
 
-        {% endif %}
-   
-      </ul>
-    
-      <form class="navbar-form" role="search" action="{% url 'search_results' %}"
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+      <a class="navbar-brand" href="{%url 'blog-home'%}" style="color: black;"> <strong> Home </strong> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog-logout' %}" style="color:black;"> <strong> Logout </strong> </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog-profile' %}" style="color: black;"> <strong> Profile</strong> </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'image-create' %}" style="color: black;"> <strong> Upload Site </strong> </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'comment-detail' %}" style="color: black;"> <strong> Api </strong> </a>
+      </li>
+      {% else%}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'blog-login' %}" style="color: black;"> <strong> Login </strong> <span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog-register' %}" style="color: black;"> <strong>Register </strong> </a>
+      </li>
+
+      {% endif %}
+
+    </ul>
+   <form class="navbar-form" role="search" action="{% url 'search_results' %}"
       style="height: 6px;margin-bottom: 25px;">
 
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search User.." name="username">
+        <input type="text" class="form-control" placeholder="Search site.." name="sitename">
         <div class="input-group-btn">
-          <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+
         </div>
       </div>
 
     </form>
 
 
-    </div>
-  </nav>
-</div>
+  </div>
+</nav>
 
- 
+
+
 <body>
+
   <main role="main" class="container">
     {% if title %}
     <title>Blog Title -{{title}}</title>
@@ -77,7 +81,7 @@
 
     {% endif %}
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-lg-12">
         {% if messages %}
 
         {% for message in messages %}
@@ -95,8 +99,7 @@
       </div>
 
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"></script>
@@ -107,6 +110,16 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
   </main>
+
 </body>
+
+<footer style="height: 150px; background-color:rgb(247, 233, 236);" class="text-center">
+  <h3> <strong> Lets Talk!</strong> </h3>
+  <a href="mailto:lorrainekamanda@gmail.com"> <i class="fas fa-envelope"
+      style="margin-top: 50px; height: 20px;"></i></a>
+  <a href="https://github.com/lorrainekamanda?tab=repositories"> <i class="fab fa-github"> </i></a>
+  <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+
+</footer>
 
 </html>

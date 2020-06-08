@@ -1,12 +1,19 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="/blog/static/blog/mains.css">
+<link rel="stylesheet" href="{%static 'blog/mains.css'%}">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css"
    integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
-<div class="container">
+   <body style="background-color:rgb(241, 245, 247);">
+  
+   
+       <div class="rows" style="margin-top: 100px;">
+    </div>
+   
 
-
-    <div class="content-section">
+    <div class="content-section" style="margin-top: 0px;">
         <div class="media">
             {% if image.username%}
             <img src="{{image.username.profile.profile_image.url}}" srcset="" class="rounded-circle"
@@ -26,16 +33,13 @@
         <p> {{image.caption}}</p>
         {%endif%}
         {% if image.image%}
-        <img src="{{image.image.url}}" alt="" srcset="" style="height: 400px; width: 400px;">
 
-        {% endif%}
-        {% if image.username == user %}
-        <i class="fas fa-pen-fancy" style="margin-left: 200px; margin-top: -100px;">  <a href="{% url 'image-update' image.id %} "> Edit</a> </i>    
-        <i class="fas fa-trash-alt"> <a href="{% url 'image-delete' image.id %} "> Clear</a>  </i>   
-       {%endif%}
-
-    </div>
-    <i style=" font-size: 16px;" class="far fa-comment">   {{ image.number_of_comments }} comments  </i>
+        <h4 class="text-center">Project Details!</h4>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+        <img src="{{image.image.url}}" alt="" srcset="" style="height: 500px; width: 500px;">
+        <i style=" font-size: 16px;" class="far fa-comment">   {{ image.number_of_comments }} comments  </i>
     
     <a href="#" onClick="document.getElementById('likebutton').submit()">
    
@@ -52,11 +56,50 @@
 <input type="hidden">
 </form>
 
+    </div>  
+    <div class="col-lg-6">
+     <h6> Sitename: <strong> {{image.sitename}}  </strong></h6>
+     <hr>
+     {% if image.tags%}
+     <h6> Tags:{{image.tags}}</h6>
+     <hr>
+     
+     {%endif%}
+     {% if image.technology%}
+     <h6> Technology:{{image.technology}}</h6>
+     <hr>
+     {%endif%}
+     {% if image.category%}
+     <h6> Category:{{image.category}}</h6>
+     <hr>
+     {%endif%}
+    
+     <h6> Country:{{image.countries.name}} <span> <img src="{{image.countries.flag}}" alt="" srcset="">  </span></h6>
+     <hr>
+    {% if image.twitter %}
+   <h6>  Follow me :<a href="{{image.twitter}}"><i class="fab fa-twitter"></i></a>  </h6> 
+      {% endif %}
+    <hr>
+     <p> Description: {{image.description}}</p>
+     <hr>
+     {% endif%}
+
+     {% if image.username == user %}
+     <i class="fas fa-pen-fancy" style="margin-left: 200px; margin-top: -100px;">  <a href="{% url 'image-update' image.id %} "> Edit</a> </i>    
+     <i class="fas fa-trash-alt"> <a href="{% url 'image-delete' image.id %} "> Clear</a>  </i>   
+    {%endif%}
+    </div>
+    
+        </div>
+       
+       
+
+    </div>
+    
 
 </div>
 
 </article>
-<p style="margin-left: 13px;"> Comments {{ image.number_of_comments }} </p>
 
 <div class="container">
 
@@ -69,9 +112,9 @@
                     <img class="rounded-circle mr-2" style="width: 40px; height: 40px;"
                         src="{{ comment.username.profile.profile_image.url }}">
 
-                    <p style="font-size: 10px;">{{ comment.username }} , {{ comment.date_posted | date:"M d,Y " }}</p><br>
+                    <p style="font-size: 10px;">{{ comment.username }} , {{ comment.date_posted | date:"M d,Y " }} <br> <span > {{ comment.comments }} </span></p><br>
                 
-                    <p style="margin-top: 40px;margin-left: -40px;">{{ comment.comments }}</p>
+                    
 
                 </div>
             </div>
@@ -89,19 +132,28 @@
 {% if user is not None %}
 <div class="col-12 col-md-6 pl-0 pl-md-3 pr-3">
     <h3 class="white-important mb-3">
-        Add a comment
+      
     </h3>
+    <div class="row">
+        <div class="col-lg-12" >
     <form method="POST">
         {% csrf_token %}
-        <fieldset class="form-group">
+        <fieldset class="form-group" class="text-center">
             {{ form | crispy }}
         </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-primary " type="submit">comment</button>
+        <div class="form-group" style="margin-top: -20px;">
+            <button class="btn btn-outline-primary btn-sm " type="submit">comment</button>
         </div>
     </form>
+</div>
+</div>
 </div>
 {% endif %}
 </div>
 </div>
+<footer>
+
+
+</footer>
+</body>
 {% endblock content %}

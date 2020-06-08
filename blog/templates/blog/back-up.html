@@ -1,0 +1,75 @@
+<div class="container">
+    <a href="mailto:lorrainekamanda@gmail.com"> <i class="fas fa-envelope"></i></a>
+    <a href="https://github.com/lorrainekamanda?tab=repositories"> <i class="fab fa-github"> </i></a>
+    <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+
+
+    <div class="row">
+
+        {% for image in images%}
+        <div class="col-md-9" style="margin-left: 90px;">
+            <div class="content-section">
+                <div class="media">
+                    {% if image.username%}
+                    <img src="{{image.username.profile.profile_image.url}}" srcset="" class="rounded-circle"
+                        style="height: 100px; width: 100px;">
+
+                    <p style="font-size: 15px;">{{image.username}} <span style="font-size: 10px;">
+                            {{image.username.email}}
+
+                            {% if image.username.profile.bio%}
+                        </span> <br> <span> {{image.username.profile.bio}} </span></p>
+                    {%endif%}
+                </div><br><br>
+                {% endif %}
+                {%if image.caption %}
+                <small>
+                    {{ image.date_posted | date:"M d,Y " }}
+                </small>
+                <p> {{image.caption}}</p>
+                {%endif%}
+
+                {% if image.image%}
+                <img src="{{image.image.url}}" alt="" srcset="" style="height: 400px; width: 400px;">
+
+                {% endif%}
+                <p> </p>
+
+                <i style=" font-size: 16px;" class="far fa-comment"> <a href="{% url 'image-detail' image.id %}">
+                        {{ image.number_of_comments }} comments </a></i>
+
+                <a href="#" onClick="document.getElementById('likebutton').submit()">
+
+
+
+                    <i style=" font-size: 16px;" class="far fa-heart"></i>
+
+
+
+                </a>
+                {{image.likes}} likes
+                <form id="likebutton" method="POST" action="{% url 'imagepreference' image.id 1%}">
+                    {% csrf_token %}
+                    <input type="hidden">
+                </form>
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+        </article>
+
+    </div>
+</div>
+{%endfor%}
+<script src="{% static 'blog/ajax.js'%}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>

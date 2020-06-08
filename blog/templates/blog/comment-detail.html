@@ -1,0 +1,33 @@
+{% extends 'blog/base.html'%}
+{% load crispy_forms_tags%}
+{% block content%}
+
+<body style="background-color:rgb(241, 245, 247);">
+  <article class="media content-section" class="text-center">
+     <div>
+    <a href="http://127.0.0.1:8000/api/profile/ " > <h5 style="margin-top: 80px;color: blue;"> http://127.0.0.1:8000/api/profile/    </h5>  </a>   <p>This is an Api endpoint.The api endpoint will provide the user's personal information such as the <br>
+      The username,phone_number and bio</p>
+    </div>
+  </div>
+
+  <div>
+  
+  </article>
+
+  <article class="media content-section">
+     <div>
+     <a href="http://127.0.0.1:8000/api/profie-details/" style="color: blue;" > 
+      <h5 style="color: blue;"> http://127.0.0.1:8000/api/profie-details/</h5></a>   
+       <p>This is an Api endpoint.The api endpoint will provide the projects details , 
+         The data provided willl include Sitename,Technology,Site Url,Tags  and the origin country</p>
+    </div>
+    <div>
+   
+      
+    
+    </div>
+   </article>
+  
+
+</body>
+{% endblock %}

@@ -23,7 +23,7 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token),
     path('api/',include(router.urls)),
     path('image/<int:pk>/', ImageDetail.as_view(), name = 'image-detail'),
-    path('image/<int:pk>/comment', CreateComment.as_view(), name = 'comment-detail'),
+    path('apiz/', views.apiz, name = 'comment-detail'),
     path('image/<int:pk>/update', UpdateDetail.as_view(), name = 'image-update'),
     path('image/<int:pk>/delete',ImageDelete.as_view(), name = 'image-delete'),
     path('image/new/', CreateDetail.as_view(), name = 'image-create'),

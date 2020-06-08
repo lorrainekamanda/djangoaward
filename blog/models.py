@@ -55,6 +55,10 @@ class Image(models.Model):
     def search_by_username(cls,search_term):
         uses = cls.objects.filter(username__username__icontains=search_term)
         return uses
+    @classmethod
+    def search_by_name(cls,search_term):
+        uses = cls.objects.filter(sitename__icontains=search_term)
+        return uses
 
     def get_image_by_id(id):
         image = Image.objects.get(id = image_id)
@@ -85,6 +89,7 @@ class Comments(models.Model):
         return self.username.username
 
 
+
 class Preference(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE,null = True)
     image= models.ForeignKey(Image, on_delete=models.CASCADE,null = True)
@@ -96,3 +101,18 @@ class Preference(models.Model):
 
     class Meta:
        unique_together = ("user", "image", "value")
+
+
+class Rate(models.Model):
+    ratings = (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10)
+    design = models.IntegerField(choices=ratings ,default = 0,null = True)
+    usability = models.IntegerField(choices=ratings ,default = 0,null = True)
+    content = models.IntegerField(choices=ratings ,default = 0,null =True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null = True)
+    username= models.ForeignKey(User,on_delete=models.CASCADE,null = True)
+    image = models.ForeignKey(Image,on_delete=models.CASCADE,null = True)
+    def get_absolute_url(self):
+        return reverse ('blog-home')
+
+    def __str__(self):
+        return self.username.username

@@ -1,10 +1,10 @@
-{% extends 'blog/base.html'%}
+
 {% block content%}
 {% load static %}
 
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css"
     integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
-<link rel="stylesheet" href="{%static 'blog/mains.css'%}">
+<link rel="stylesheet" href="{%static 'blog/main22.css'%}">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Google Fonts -->
@@ -13,83 +13,163 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/blog/static/blog/mains.css">
+<link rel="stylesheet" href="/blog/static/blog/main22.css">
+<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
 
 
-<div id="rowa" style="width: 1000px;height: 900px;" >
-<div class="overlay22">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{%url 'blog-home'%}" style="color: black;"> <strong> Home </strong> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog-logout' %}" style="color:black;"> <strong> Logout </strong> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog-profile' %}" style="color: black;"> <strong> Profile</strong> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'image-create' %}" style="color: black;"> <strong> Upload Site </strong> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'comment-detail' %}" style="color: black;"> <strong> Api </strong> </a>
+        </li>
+        {% else%}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'blog-login' %}" style="color: black;"> <strong> Login </strong> <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog-register' %}" style="color: black;"> <strong>Register </strong> </a>
+        </li>
+  
+        {% endif %}
+  
+      </ul>
+     <form class="navbar-form" role="search" action="{% url 'search_results' %}"
+        style="height: 6px;margin-bottom: 25px;">
+  
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search site.." name="sitename">
+          <div class="input-group-btn">
+  
+          </div>
+        </div>
+  
+      </form>
+  
+  
+    </div>
+  </nav>
+  
 
-</div>
-
-</div>
-<div class="container-fluid" style="margin-top: 80px;">
-    <a href="mailto:lorrainekamanda@gmail.com"> <i class="fas fa-envelope"></i></a>
-    <a href="https://github.com/lorrainekamanda?tab=repositories"> <i class="fab fa-github"> </i></a>
-    <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
-    <div class="row row1" style="margin-top: 40px;" id="row1">
-        {% for image in images%}
-        <div class="col-lg-4 col9">
-            <div class="mdb-lightbox">
+<body style="background-color:rgb(241, 245, 247);">
 
 
 
-                <div class="view overlay zoom">
-                    <img src="{{image.image.url}}" alt="" srcset="" id="img1" style="height: 300px; width: 300px;">
-                    <div class="mask flex-center rgba-red-light" style="height: 315px; width: 315px;">
+    <div id="rowa" style="width: 100%;height: 600px;" class="text-center">
+        <div class="overlay22">
+            <p style="color: white;padding-top: 90px; padding-right: 900px;">June 9th 2020</p>
+            <h1 style="color:white; padding-top: 50px;" class="text-center">ROOMATE WEB APP</h1>
+            <p style="color: white;"> BY LEILA NJERI FROM MAURITIUS</p>
 
-                        <form id="likebutton" method="POST" action="{% url 'imagepreference' image.id 1%}">
-                            {% csrf_token %}
-                            <input type="hidden">
-                        </form>
-                        <h1 id="word" style="color: white;" class="text-center"> <span
-                                style=" margin-bottom: 600px; margin-left: 250px;"> <a href="#"
-                                    onClick="document.getElementById('likebutton').submit()" class="flex">
-                                    <i style=" font-size: 16px;" class="far fa-heart"> {{image.likes}}</i>
-                                </a> </span> <br> <br> {{image.sitename|upper}} <br> <br> <span> <button
-                                    class="btn btn-primary btn-sm" style="border-radius: 20px;"><a href="{{image.URL}}"
-                                        style="color: white;"> Visit site </a> </button> </span></h1><br><br>
+            <a href="mailto:lorrainekamanda@gmail.com"> <i class="fas fa-envelope"
+                    style="margin-top: 50px; height: 20px;"></i></a>
 
 
+            <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a><br><br>
+            <a href="https://nderitumwanu.github.io/ROOMATES-WEB-APP/"><button class="btn btn-sm btn-outline-info"
+                    style="border-radius: 50px;color:white;"> View Site</button> </a><br><br>
 
+            <P style="color: white;"> JURY </P>
+            <img class="rounded-circle mr-2" style="width: 40px; height: 40px;"
+                src="{%static 'blog/images/profile.jpg' %}">
+            <img class="rounded-circle mr-2" style="width: 40px; height: 40px;"
+                src="{%static 'blog/images/travel5.jpg' %}">
+            <img class="rounded-circle mr-2" style="width: 40px; height: 40px;"
+                src="{%static 'blog/images/animal6.jpg' %}">
+        </div>
+    </div>
+    <div class="container" style="margin-top: 80px;">
+        <h1 class="text-center"> <strong> Projects </strong></h1>
+        <div class="row row1" style="margin-top: 40px;" id="row1">
+
+            {% for image in images%}
+            <div class="col-lg-4 col9">
+                <div class="mdb-lightbox">
+
+
+
+                    <div class="view overlay zoom">
+                        <img src="{{image.image.url}}" alt="" srcset="" id="img1" style="height: 300px; width: 300px;">
+                        <div class="mask flex-center rgba-red-light" style="height: 315px; width: 315px;">
+
+                            <form id="likebutton" method="POST" action="{% url 'imagepreference' image.id 1%}">
+                                {% csrf_token %}
+                                <input type="hidden">
+                            </form>
+                            <h1 id="word" style="color: white;" class="text-center"> <span
+                                    style=" margin-bottom: 600px; margin-left: 250px;"> <a href="#"
+                                        onClick="document.getElementById('likebutton').submit()" class="flex">
+                                        <i style=" font-size: 16px;" class="far fa-heart"> {{image.likes}}</i>
+                                    </a> </span> <br> <br> {{image.sitename|upper}} <br> <br> <span> <button
+                                        class="btn btn-primary btn-sm" style="border-radius: 20px;"><a
+                                            href="{{image.URL}}" style="color: white;"> Visit site </a> </button>
+                                </span></h1><br><br>
+
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="content-section" style="width: 300px;">
+                        <p> <strong> {{image.sitename}} </strong> <br> <span> From {{image.countries.name}}</span> </p>
+                        <div class="media">
+
+                            {% if image.username%}
+                            <img src="{{image.username.profile.profile_image.url}}" srcset="" class="rounded-circle"
+                                style="height: 50px; width: 50px;">
+
+                            <p style="font-size: 10px;"> BY <strong> {{image.username|upper}} </strong> <span
+                                    style="font-size: 10px;">
+                                    {{image.username.email}}
+
+
+                                    {%endif%}
+                        </div><br><br>
+                        <small>
+                            {{ image.date_posted | date:"M d,Y " }}
+                        </small>
+                        <i style=" font-size: 16px;" class="far fa-comment"> <a
+                                href="{% url 'image-detail' image.id %}">
+                                {{ image.number_of_comments }} comments </a></i>
+
+
+                        </article>
                     </div>
                 </div>
 
 
-                <div class="content-section" style="width: 300px;">
-                    <p> <strong> {{image.sitename}} </strong> <br> <span> From {{image.countries.name}}</span> </p>
-                    <div class="media">
-
-                        {% if image.username%}
-                        <img src="{{image.username.profile.profile_image.url}}" srcset="" class="rounded-circle"
-                            style="height: 50px; width: 50px;">
-
-                        <p style="font-size: 10px;"> BY <strong> {{image.username|upper}} </strong> <span
-                                style="font-size: 10px;">
-                                {{image.username.email}}
-
-
-                                {%endif%}
-                    </div><br><br>
-                    <small>
-                        {{ image.date_posted | date:"M d,Y " }}
-                    </small>
-                    <i style=" font-size: 16px;" class="far fa-comment"> <a href="{% url 'image-detail' image.id %}">
-                            {{ image.number_of_comments }} comments </a></i>
-
-
-                    </article>
-                </div>
             </div>
-
+            {%endfor%}
 
         </div>
-        {%endfor%}
-
     </div>
-</div>
-<script src="{% static 'blog/ajax.js'%}"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-
+    <footer style="height: 150px; background-color:rgb(247, 233, 236);" class="text-center">
+        <h3> <strong> Lets Talk!</strong> </h3>
+        <a href="mailto:lorrainekamanda@gmail.com"> <i class="fas fa-envelope"
+            style="margin-top: 50px; height: 20px;"></i></a>
+        <a href="https://github.com/lorrainekamanda?tab=repositories"> <i class="fab fa-github"> </i></a>
+        <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+      
+      </footer>
+    <script src="{% static 'blog/ajax.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+</body>
 {%endblock%}

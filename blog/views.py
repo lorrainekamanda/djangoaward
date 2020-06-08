@@ -83,10 +83,12 @@ def register(request):
     return render (request,'blog/register.html',{'form':form})
 
 
+
+
 def search_results(request):
-    if 'username' in request.GET and request.GET["username"]:
-        search_term = request.GET.get("username")
-        searched_users = Image.search_by_username(search_term)
+    if 'sitename' in request.GET and request.GET["sitename"]:
+        search_term = request.GET.get("sitename")
+        searched_users = Image.search_by_name(search_term)
         message = f"{search_term}"
 
         return render(request, 'blog/search.html',{"message":message,"users": searched_users})
@@ -137,11 +139,16 @@ class ImageDetail(DetailView):
 
     def post(self, request, *args, **kwargs):
         new_comment = Comments(comments=request.POST.get('comments'),
-                              username=self.request.user,
-                              image=self.get_object())
+                              
+                               username=self.request.user,
+                               image=self.get_object())
         new_comment.save()
 
         return self.get(self, request, *args, **kwargs)
+
+   
+
+    
 
 class ImageDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Image
@@ -273,3 +280,8 @@ class MerchDescription(APIView):
         merch = self.get_merch(pk)
         merch.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+def apiz(request):
+
+    return render(request,'blog/comment-detail.html')
